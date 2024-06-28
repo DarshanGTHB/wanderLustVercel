@@ -167,7 +167,7 @@ app.use((err,req,res,next) => {
 
 
 
-let PORT = 8080
+let PORT = 8000
 let url ="http://localhost:8080/listings";
 
 app.listen(PORT, () => {

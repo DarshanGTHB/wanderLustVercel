@@ -4,7 +4,7 @@ var inputBox = document.querySelector("#search-input");
 
 var options = [];
 
-fetch("https://wanderlustofficial-prv5.onrender.com/data/searchbar")
+fetch("https://wander-lust-2806.vercel.app/data/searchbar")
 .then( res => res.json())
 .then( (result) => {
     options = result.map( obj => {
