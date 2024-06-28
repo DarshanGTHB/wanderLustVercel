@@ -1,0 +1,155 @@
+<% layout("/layouts/boilerplate") %>
+
+  <style>
+       
+
+    .e-form h2 {
+      text-align: center;
+      color: #2e2e2e;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .form-floating {
+      margin-bottom: 20px;
+    }
+
+    .form-control,
+    .input-group-text {
+      border-radius: 5px;
+      background-color: #f8f8f8;
+      border: 1px solid #ced4da;
+    }
+
+    .form-control:focus {
+      border-color: #4c5cef;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem #4c5cef55;
+    }
+
+    .input-group-text {
+      background-color: #ffd700;
+      color: #343a40;
+    }
+
+    .btn-outline-primary {
+      color: #007bff;
+      border-color: #007bff;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    label {
+      color: #6c757d;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    ::placeholder {
+      color: #6c757d;
+      opacity: 1;
+    }
+
+    .input-group.mb-3 .input-group-text {
+      background-color: #2e2e2eb0;
+      color: #fff;
+    }
+
+    .input-group.mb-3 .form-control {
+      border-left: 0;
+    }
+
+    .input-group .input-group-text:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .input-group .form-control:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  </style>
+
+
+  <form enctype="multipart/form-data" method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="e-form needs-validation" id="e-Form" novalidate >
+    <h2>Edit your Listing</h2> 
+    <div class="form-floating mb-3">
+      <input required type="text" value="<%= listing.title %>" class="form-control" id="floatingTitle" name="listing[title]" placeholder="Enter title">
+      <label for="floatingTitle">Title</label>
+      <div class="invalid-feedback">Enter a valid Info</div>
+    </div>
+    
+    <div class="form-floating">
+      <textarea required class="form-control e-desc" name="listing[description]" id="floatingTextarea" placeholder="Description"><%= listing.description %></textarea>
+      <label for="floatingTextarea">Description</label>
+      <div class="invalid-feedback">Enter a valid Info</div>
+    </div>
+    
+    <div class="form-floating mb-3">
+      <h5>Current Image Preview</h5>
+      <img class="image-preview" src="<%= previewUrl %>" alt="Original image">
+    </div>
+    <div class="form-floating mb-3">
+      <input type="file" class="form-control" id="floatingURL" name="listing[image]">
+      <label for="floatingURL">New Image</label>
+    </div>
+    
+    <div class="e-price-country">
+      <div class="input-group mb-3">
+        <span class="input-group-text">&#8377;</span>
+        <input required type="text" value="<%= listing.price %>" class="form-control" placeholder="Enter Price" name="listing[price]">
+        <div class="invalid-feedback">Enter a valid Info</div>
+      </div>
+      
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fa-solid fa-earth-americas"></i></span>
+        <input required type="text" value="<%= listing.country %>" class="form-control" placeholder="Enter Country" name="listing[country]">
+        <div class="invalid-feedback">Enter a valid Info</div>
+      </div>
+    </div>
+    
+    <div class="input-group mb-3">
+      <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+      <input required type="text" value="<%= listing.location %>" class="form-control" placeholder="Enter Location" name="listing[location]">
+      <div class="invalid-feedback">Enter a valid Info</div>
+    </div>
+    <br>
+    
+    <button id="applyChangesBtn" class="btn btn-outline-success">Apply Changes &#10003;</button>
+
+  </form>
+  <script>
+      (() => {
+      'use strict';
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation');
+
+      // Loop over them and prevent submission
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          } else {
+            event.preventDefault(); // Prevent form submission to show the confirmation dialog
+
+            // Show confirmation dialog
+            var confirmed = confirm("Are you sure you want to Apply Changes?");
+            if (confirmed) {
+              form.submit(); // Submit the form if the user confirms
+            }
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+  </script>
+

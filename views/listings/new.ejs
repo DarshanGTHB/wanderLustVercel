@@ -1,0 +1,197 @@
+<% layout("/layouts/boilerplate") %>
+  <head>
+    
+    <style>
+         
+      
+      
+      h2 {
+        text-align: center;
+        color: #2e2e2e;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      
+      .form-floating {
+        margin-bottom: 20px;
+      }
+      
+      .form-control,
+      .input-group-text {
+        border-radius: 5px;
+        background-color: #f8f8f8;
+        border: 1px solid #ced4da;
+      }
+      
+      .form-control:focus {
+        border-color: #4c5cef;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem #4c5cef55;
+      }
+      
+      .input-group-text {
+        background-color: #ffd700;
+        color: #343a40;
+      }
+      
+      .btn-success {
+        background-color: #28a746ae;
+        border-color: #28a746ae;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      
+      .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+      }
+      
+      label {
+        color: #6c757d;
+      }
+      
+      textarea {
+        resize: none;
+      }
+      
+      ::placeholder {
+        color: #6c757d;
+        opacity: 1;
+      }
+      
+      .input-group.mb-3 .input-group-text {
+        background-color: #2e2e2eb0;
+        color: #fff;
+      }
+      
+      .input-group .input-group-text:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      
+      .input-group.mb-3 .form-control {
+        border-left: 0;
+      }
+      
+      .input-group .form-control:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      
+    </style>
+  </head>
+  <body class="n-body">
+    <h2>Create a New Listing</h2>
+    <form method="POST" action="/listings" class="needs-validation n-form" id="n-form" novalidate enctype="multipart/form-data">
+      <div class="form-floating mb-3"  >
+        <input type="text" class="form-control" id="floatingTitle"  name="listing[title]" placeholder="Enter title" required>
+        <label for="floatingTitle">Title</label>
+        <div class="invalid-feedback">Enter a Valid Info</div>
+      </div>
+      
+      <div class="form-floating">
+        <textarea class="form-control n-desc" name="listing[description]" id="floatingTextarea" placeholder="Description" required></textarea>
+        <label for="floatingTextarea">Description</label>
+        <div class="invalid-feedback">Enter a Valid Info</div>
+      </div>
+      
+      <!-- <div class="form-floating mb-3"  >
+        <input type="text" class="form-control" id="floatingURL"  name="listing[image]" placeholder="Enter img URL" required>
+        <label for="floatingURL">Image URL</label>
+        <div class="invalid-feedback">Enter a Valid Info</div>
+      </div> -->
+      <!-- <div class="form-floating mb-3"  > -->
+      <div class="mb-3"  >
+        <label for="imageFile">Image </label>
+        <input type="file" class="form-control" id="imageFile"  name="listing[image]" placeholder="Enter img URL" required>
+        <div class="invalid-feedback">Enter a Valid Info</div>
+      </div>
+      
+      
+      <div class="n-price-country">
+        <div class="input-group mb-3 ">
+          <span class="input-group-text">&#8377;</span>
+          <input type="text" class="form-control" placeholder="Enter Price" name="listing[price]" required>
+          <br>
+          <div class="invalid-feedback">Enter a Valid Info</div>
+        </div>
+        
+        <div class="input-group mb-3 ">
+          <span class="input-group-text"><i class="fa-solid fa-earth-americas"></i></span>
+          <input type="text" class="form-control" placeholder="Enter Country" name="listing[country]" required>
+          <br>
+          <div class="invalid-feedback">Enter a Valid Info</div>
+        </div>
+      </div>
+      
+      <div class="input-group mb-3 ">
+        <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+        <input type="text" class="form-control" placeholder="Enter Location" name="listing[location]" required>
+        <div class="invalid-feedback">Enter a Valid Info</div>
+      </div>
+      <br>
+      
+      <button class="btn btn-success" id="add-btn">ADD</button>
+
+      
+    </form>
+    
+
+
+
+
+    <!-- <h3>Create a New Listing</h3>
+    <form method="POST" action="/listings">
+      <input name="listing[title]" placeholder="enter title" type="text" />
+      <br /><br />
+      <textarea
+        name="listing[description]"
+        placeholder="enter description"
+      ></textarea>
+      <br /><br />
+      <input
+        name="listing[image]"
+        placeholder="enter image URL/Link"
+        type="text"
+      />
+      <br /><br />
+      <input name="listing[price]" placeholder="enter price" type="number" />
+      <br /><br />
+      <input name="listing[country]" placeholder="enter country" type="text" />
+      <br /><br />
+      <input
+        name="listing[location]"
+        placeholder="enter location"
+        type="text"
+      />
+      <br /><br />
+      <button>Add</button>
+    </form> -->
+    <script>
+      (() => {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              event.preventDefault(); // Prevent form submission to show the confirmation dialog
+
+              // Show confirmation dialog
+              var confirmed = confirm("Are you sure you want to Create New Listing?");
+              if (confirmed) {
+                form.submit(); // Submit the form if the user confirms
+              }
+            }
+
+            form.classList.add('was-validated');
+          }, false);
+        });
+      })();
+    </script>
+  </body>

@@ -1,0 +1,45 @@
+<% if (success.length) { %>
+    <div class="t-notifications">
+        <div class="t-toast success t-this">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="t-content">
+                    <div class="t-title">Done</div>
+                    <span><%=success%></span>
+                </div>
+                <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+        </div>
+    </div>
+    
+    <script>
+        setTimeout(function() {
+            const toast = document.querySelector('.t-toast.t-this');
+            if (toast) {
+                toast.remove();
+            }
+        }, 5200);
+    </script>
+
+<% } %>
+
+<% if (error.length) { %>
+    <div class="t-notifications">
+        <div class="t-toast success t-this t-error">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="t-content">
+                    <div class="t-title">Error</div>
+                    <span><%=error%></span>
+                </div>
+                <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+        </div>
+    </div>
+    
+    <script>
+        setTimeout(function() {
+            const toast = document.querySelector('.t-toast.t-this');
+            if (toast) {
+                toast.remove();
+            }
+        }, 5200);
+    </script>
+
+<% } %>

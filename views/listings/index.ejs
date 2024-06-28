@@ -1,0 +1,125 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  #i-filters {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of filters */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+
+  #i-filters::-webkit-scrollbar {
+    display: none; 
+  }
+  .filter {
+    text-align: center;
+    margin: 0.5rem 1rem;
+    opacity: 0.75;
+    transition: 0.3s;
+    cursor: pointer;
+    display: inline-block; /* Ensure filters stay in a row */
+    white-space: normal; /* Restore normal whitespace */
+  }
+
+  .filter:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  .filter div i{
+    color: #198754;;
+  }
+
+  @media (max-width: 1050px) {
+    #i-filters {
+      overflow-x: auto; /* Enable horizontal scrolling */
+      display: block; /* Stack filters vertically */
+      text-align: center; /* Center-align filters */
+    }
+
+    .filter {
+      display: inline-block;
+      white-space: nowrap; 
+      margin: 0 1rem;
+      font-size: small;
+      opacity: 1;
+    }
+    
+  }
+</style>
+    <div id="i-filters">
+      <div class="filter">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Forest</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Amazing pools</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castles</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic cities</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-regular fa-snowflake"></i></div>
+        <p>Arctic</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountain</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-sailboat"></i></div>
+        <p>Boating</p>
+      </div>
+    </div>
+    
+    <div class="i-cards mt-3">
+      <% for(let listing of allListings) { %>
+      <a href="/listings/<%= listing._id %> " class="card" >
+        <div style="width: 20rem;">
+          <img src="<%=listing.image.url%>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><b><%= listing.title %></b></h5>
+            <p class="card-text"><%= listing.description %></p>
+            <h5>&#8377; <%= listing.price %>/-</h5>
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+
+
+    <script>
+      let filters = document.getElementsByClassName("filter");
+      Array.from(filters).forEach((filter) => {
+        filter.addEventListener("click", () => {
+          window.location.href="/listings/catagory";
+        });
+    });
+    </script>
+   
+    
+
+  <!-- <h5>&#8377;  listing.price.toLocaleString("en-IN") %>/-</h5> -->

@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+      <div class="n-brand">
+          <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link" href="/listings">Explore</a>
+                </li>
+                
+          </ul>
+      </div>
+      <input type="checkbox" id="bar-check" class="d-none">
+      <label for="bar-check"><i class="fa-solid fa-bars" id="menu-bar"></i></label>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="search-box">
+              <div class="search-div">
+                  <input type="text" class="search-area" id="search-input" placeholder="Search here..">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="result-box">
+                  <!-- <ul>
+                      <li>
+                          <a href="/listings" class="search-link">
+                              <img class="search-image" src="../../public/css/s_bcgs/bc-3.png" alt="NO probs">
+                              <div class="search-info">
+                                <h5>Web development</h5>
+                                <i class="fa-solid fa-location-dot"></i><i> : Gujarat </i><br>  
+                                <i class="fa-solid fa-earth-americas"></i><i> : India </i>
+                              </div>
+                            </a>
+                      </li>
+                  </ul> -->
+              </div>
+          </div>
+          <ul class="navbar-nav" id="right-nav">
+              <li class="nav-item">
+                  <a class="nav-link" href="/listings/new">Add new listing</a>
+              </li>
+              <% if (!currUser) { %>
+              <li class="nav-item">
+                  <a class="nav-link" href="/signup">SignUp</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/login">LogIn</a>
+              </li>
+              <% } %>
+              <% if (currUser) { %>
+              <li class="nav-item">
+                  <a class="nav-link" id="logout" href="/logout">LogOut</a>
+              </li>
+              <li class="nav-item">
+                <a href="/listings"><i class="fa-regular fa-user nav-user"></i></a>
+            </li>       
+            <p class="curUser"><i><%= currUser.username %></i></p>
+              <% } %>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<script>
+    let logOut = document.querySelector("#logout");
+
+    if(logOut){
+        logOut.addEventListener("click" , event =>{
+            event.preventDefault();
+            var confirmed = confirm("Are you sure you want to LogOut?");
+            if (confirmed) {
+                window.location.href = logOut.href; 
+            }
+        });
+    }
+</script>
+<script src="/js/search.js"></script>
+
+
+
