@@ -24,7 +24,8 @@
           </p>
         
           <div class="s-btns">
-            <% if(currUser && currUser.equals(listing.owner._id)) { %>
+            <% if(true) { %>
+            <!-- % if(currUser && currUser.equals(listing.owner._id)) { %> -->
               <!-- %= console.log(currUser._id.equals(listing.owner._id)) %>
               %= console.log(listing.owner._id) %> -->
             <div class="s-btns-del-edit">
@@ -74,7 +75,8 @@
           </form>
         </div>
     <% } %>
-    <% if(!currUser)  {%> 
+    <% if(true)  {%> 
+    <!-- % if(!currUser)  {%>  -->
       <div class="r-div">
         <h4>you have to log-in for write a review</h4>
       </div>
@@ -138,7 +140,8 @@
           <p class="card-text"><%= review.comment %></p>
           <span>On : <%= review.date.toLocaleString() %></span>
         </div>
-        <% if(currUser && review.author.equals(currUser._id)) {%>
+        <% if(true) {%>
+        <!-- % if(currUser && review.author.equals(currUser._id)) {%> -->
 
         <form class="r-del-form" method="POST" action="/listings/<%=listing._id%>/review/<%= review._id %>?_method=DELETE">
           <button class="r-del-btn btn btn-outline-dark">Delete</button>
